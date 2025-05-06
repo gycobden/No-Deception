@@ -1,2 +1,6 @@
 pytest
 fastapi
+pymupdf
+nltk
+sentence-transformers
+chromadb
