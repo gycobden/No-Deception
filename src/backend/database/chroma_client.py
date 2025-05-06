@@ -36,7 +36,7 @@ def add_document(document: str, metadata: MetadataDict):
         ids=[metadata["id"]],
         embeddings=[metadata["embedding"]]
     )
-    print(f"Document with ID {metadata["id"]} added to ChromaDB.")
+    print(f"Document with ID {metadata['id']} added to ChromaDB.")
     return metadata["id"]
 
 def get_document_by_id(document_id: str):
