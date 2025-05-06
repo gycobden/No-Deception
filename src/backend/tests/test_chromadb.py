@@ -1,5 +1,5 @@
 import pytest, pprint
-from chroma import MetadataDict, add_document, get_document_by_id, find_similar_documents
+from database.chroma_client import MetadataDict, add_document, get_document_by_id, find_similar_documents
 
 @pytest.fixture
 def test_metadata():
