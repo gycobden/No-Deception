@@ -1,5 +1,5 @@
-from chunker import chunk_file
-from embedder import embed_chunk
+from .chunker import chunk_file
+from .embedder import embed_chunk
 
 """
 Reads in a PDF file, parse its text, extract the metadata, 
@@ -14,11 +14,18 @@ Return:
     Void.
 """
 
-def upload_file(file_name):
+def process_file(file_name):
+    data = dict()
+
     ids, chunks, metadata = chunk_file(file_name)
     embeddings = embed_chunk(chunks)
 
-    print(ids, chunks, metadata["title"], metadata["author"], embeddings)
+    data["ids"] = ids
+    data["chunks"] = chunks
+    data["metadata"] = metadata
+    data["embeddings"] = embeddings
+
+    return data
 
 if __name__ == "__main__":
-    upload_file("vaccine.pdf")
+    process_file("../vaccine.pdf")
