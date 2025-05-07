@@ -4,7 +4,7 @@ import chromadb
 from chromadb import Client, Collection
 import pprint # for pretty printing
 
-chroma_client = chromadb.PersistentClient(path="/Users/evanz/Documents/coding/No-Deception/src/backend/database") # save and load db from local machine
+chroma_client = chromadb.Client()
 chroma_client = chromadb.HttpClient(host="localhost", port="8000") # connect to chroma server
 
 collection = chroma_client.get_or_create_collection(name="vaccine_documents")
