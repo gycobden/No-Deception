@@ -1,5 +1,7 @@
 pytest
 fastapi
 reportlab
+pymupdf
+nltk
+sentence-transformers
 chromadb
-PyMuPDF
