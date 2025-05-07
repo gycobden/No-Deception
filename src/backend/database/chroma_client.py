@@ -3,11 +3,15 @@
 import chromadb
 from chromadb import Client, Collection
 import pprint # for pretty printing
+import tempfile
 
-chroma_client = chromadb.Client()
-chroma_client = chromadb.HttpClient(host="localhost", port="8000") # connect to chroma server
+# Create a temporary directory for the ChromaDB database
+temp_dir = tempfile.mkdtemp()
 
-collection = chroma_client.get_or_create_collection(name="vaccine_documents")
+# Start a ChromaDB PersistentClient using the temp path
+client = chromadb.PersistentClient(path=temp_dir)
+
+collection = client.get_or_create_collection(name="vaccine_documents")
 
 # MetadataDict class is used to hold metadata for each document and converts them in the
 # correct format to be added to the ChromaDB collection
