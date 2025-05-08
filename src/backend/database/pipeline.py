@@ -1,5 +1,6 @@
 from .chunker import chunk_file
 from .embedder import embed_chunk
+from .chroma_client import MetadataDict, add_document
 
 """
 Reads in a PDF file, parse its text, extract the metadata, 
@@ -20,10 +21,35 @@ def process_file(file_name):
     ids, chunks, metadata = chunk_file(file_name)
     embeddings = embed_chunk(chunks)
 
-    data["ids"] = ids
-    data["chunks"] = chunks
-    data["metadata"] = metadata
-    data["embeddings"] = embeddings
+    # Create a MetadataDict objects from file_name to insert
+    # into the database
+    data = {
+        "ids": ids,
+        "chunks": chunks,
+        "embeddings": embeddings,
+        "metadata": metadata
+    }
+    
+    for chunk_id, chunk, embedding in enumerate(zip(ids, chunks, embeddings)):
+        print(f"Adding id {chunk_id} to database with title {metadata['title']} and author {metadata['author']}\n")
+        metadata_dict = MetadataDict(
+            id=f"{chunk_id}",
+            embedding=embedding,
+            text_chunk=chunk,
+            source_title=metadata["title"], 
+            source_author=metadata["author"]
+        )
+        add_document(metadata["title"], metadata_dict)
+        # Add the metadata to the data dictionary
+        data["chunks"][chunk_id] = {
+            "id": chunk_id,
+            "metadata": {
+                "title": metadata["title"],
+                "author": metadata["author"],
+            },
+            "chunk": chunk,
+            "embedding": embedding
+        }
 
     return data
 
