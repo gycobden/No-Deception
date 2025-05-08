@@ -1,17 +1,6 @@
 # chroma run
-
+from typing import List
 import chromadb
-from chromadb import Client, Collection
-import pprint # for pretty printing
-import tempfile
-
-# Create a temporary directory for the ChromaDB database
-temp_dir = tempfile.mkdtemp()
-
-# Start a ChromaDB PersistentClient using the temp path
-client = chromadb.PersistentClient(path=temp_dir)
-
-collection = client.get_or_create_collection(name="vaccine_documents")
 
 # MetadataDict class is used to hold metadata for each document and converts them in the
 # correct format to be added to the ChromaDB collection
@@ -31,42 +20,51 @@ class MetadataDict:
             "source_title": self.source_title,
             "source_author": self.source_author,
         }
-    
-def add_document(document: str, metadata: MetadataDict):
-    collection.upsert(
-        documents=[document],
-        metadatas=[{"id": metadata["id"], "text_chunk": metadata["text_chunk"], "source_title": metadata["source_title"], 
-                    "source_author": metadata["source_author"]}],
-        ids=[metadata["id"]],
-        embeddings=[metadata["embedding"]]
-    )
-    print(f"Document with ID {metadata['id']} added to ChromaDB.")
-    return metadata["id"]
 
-def get_document_by_id(document_id: str):
-    results = collection.get(
-        ids=[document_id],
-        include=["documents", "metadatas", "embeddings"]
-    )
-    return results
-    
-def find_similar_documents(embedding: list, n_results: int = 5):
-    results = collection.query(
-        query_embeddings=[embedding],
-        n_results=n_results,
-        include=["documents", "metadatas", "embeddings"]
-    )
-    return results
-
-def find_and_print_similar_documents(embedding: list, n_results: int = 5):
-    results = find_similar_documents(embedding, n_results)
-
-    for i, doc in enumerate(results['documents'][0]):
-        metadata = results['metadatas'][0][i]
-        print(f"\nID: {metadata['id']}")
-        print(f"  Document: {doc}")
-        print(f"  Source Title: {metadata['source_title']}")
-        print(f"  Source Author: {metadata['source_author']}")
-        print(f"  Text: {metadata['text_chunk']}")
+class ChromaClient:
+    def __init__(self, db_dir, collection_name):
+        self.client = chromadb.PersistentClient(path=db_dir)
+        self.collection = self.client.get_or_create_collection(name=collection_name)
         
-        print(f"  Embedding: {results['embeddings'][0][i]}")
+    def add_document(self, document: str, metadatas: List["MetadataDict"]):
+        documents = [document for _ in range(len(metadatas))]
+
+        for i, metadata in enumerate(metadatas):
+            self.collection.upsert(
+                documents=[documents[i]],
+
+                metadatas=[{"text_chunk": metadata["text_chunk"], "source_title": metadata["source_title"], 
+                            "source_author": metadata["source_author"]}],
+                ids=[metadata["id"]],
+                embeddings=[metadata["embedding"]]
+            )
+
+        print(f"Document with name {document} added to ChromaDB.")
+        return document
+    
+    def get_document_by_id(self, document_id: str):
+        results = self.collection.get(
+            ids=[document_id],
+            include=["documents", "metadatas", "embeddings"]
+        )
+        return results
+        
+    def find_similar_documents(self, embedding: list, n_results: int = 5):
+        results = self.collection.query(
+            query_embeddings=[embedding],
+            n_results=n_results,
+            include=["documents", "metadatas", "embeddings"]
+        )
+        return results
+
+    def find_and_print_similar_documents(self, embedding: list, n_results: int = 5):
+        results = self.find_similar_documents(embedding, n_results)
+
+        for i, doc in enumerate(results['documents'][0]):
+            metadata = results['metadatas'][0][i]
+            print(f"\nID: {results['ids'][0][i]}")
+            print(f"  Document: {doc}")
+            print(f"  Source Title: {metadata['source_title']}")
+            print(f"  Source Author: {metadata['source_author']}")
+            print(f"  Text: {metadata['text_chunk']}")
+            print(f"  Embedding: {results['embeddings'][0][i]}")
