@@ -1,7 +1,6 @@
 # chroma run
 from typing import List
 import chromadb
-from database.pipeline import process_file
 
 # MetadataDict class is used to hold metadata for each document and converts them in the
 # correct format to be added to the ChromaDB collection

@@ -1,7 +1,6 @@
 import pytest
-from database.chroma_client import MetadataDict, ChromaClient
+from src.backend.database.chroma_client import MetadataDict, ChromaClient
 import tempfile
-import chromadb
 
 @pytest.fixture
 def test_metadata():

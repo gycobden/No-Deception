@@ -1,4 +1,4 @@
-from database import pipeline
+from src.backend.database import pipeline
 import pytest
 from reportlab.pdfgen import canvas
 import os
