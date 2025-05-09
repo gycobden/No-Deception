@@ -1,3 +1,5 @@
+# python init_chroma.py --reset=True
+
 import os
 import argparse
 import shutil

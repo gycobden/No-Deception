@@ -1,22 +1,6 @@
 # chroma run
-<<<<<<< HEAD
-
-import chromadb
-from chromadb import Client, Collection
-import pprint # for pretty printing
-import tempfile
-
-# Create a temporary directory for the ChromaDB database
-temp_dir = tempfile.mkdtemp()
-
-# Start a ChromaDB PersistentClient using the temp path
-client = chromadb.PersistentClient(path=temp_dir)
-
-collection = client.get_or_create_collection(name="vaccine_documents")
-=======
 from typing import List
 import chromadb
->>>>>>> b61fe74236403cf5095221792570fecd17aef6c1
 
 # MetadataDict class is used to hold metadata for each document and converts them in the
 # correct format to be added to the ChromaDB collection
@@ -36,47 +20,6 @@ class MetadataDict:
             "source_title": self.source_title,
             "source_author": self.source_author,
         }
-<<<<<<< HEAD
-    
-def add_document(document: str, metadata: MetadataDict):
-    collection.upsert(
-        documents=[document],
-        metadatas=[{"id": metadata["id"], "text_chunk": metadata["text_chunk"], "source_title": metadata["source_title"], 
-                    "source_author": metadata["source_author"]}],
-        ids=[metadata["id"]],
-        embeddings=[metadata["embedding"]]
-    )
-    print(f"Document with ID {metadata['id']} added to ChromaDB.")
-    return metadata["id"]
-
-def get_document_by_id(document_id: str):
-    results = collection.get(
-        ids=[document_id],
-        include=["documents", "metadatas", "embeddings"]
-    )
-    return results
-    
-def find_similar_documents(embedding: list, n_results: int = 5):
-    results = collection.query(
-        query_embeddings=[embedding],
-        n_results=n_results,
-        include=["documents", "metadatas", "embeddings"]
-    )
-    return results
-
-def find_and_print_similar_documents(embedding: list, n_results: int = 5):
-    results = find_similar_documents(embedding, n_results)
-
-    for i, doc in enumerate(results['documents'][0]):
-        metadata = results['metadatas'][0][i]
-        print(f"\nID: {metadata['id']}")
-        print(f"  Document: {doc}")
-        print(f"  Source Title: {metadata['source_title']}")
-        print(f"  Source Author: {metadata['source_author']}")
-        print(f"  Text: {metadata['text_chunk']}")
-        
-        print(f"  Embedding: {results['embeddings'][0][i]}")
-=======
 
 class ChromaClient:
     def __init__(self, db_dir, collection_name):
@@ -125,4 +68,3 @@ class ChromaClient:
             print(f"  Source Author: {metadata['source_author']}")
             print(f"  Text: {metadata['text_chunk']}")
             print(f"  Embedding: {results['embeddings'][0][i]}")
->>>>>>> b61fe74236403cf5095221792570fecd17aef6c1
