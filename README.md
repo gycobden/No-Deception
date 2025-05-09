@@ -5,6 +5,9 @@ Our primary source of knowledge is rife with misinformation, and it can be diffi
 We want to provide an easy way to navigate the internet by removing the overhead of fact-checking. We seek to provide the ability to see at a glance whether a site or post is biased, contains inaccuracies, or is malicious.
 ### Repository Layout
 The Respository will consist of a source code folder with directories for the front end and back end. The front end will have the UI and assets, and the back end will have databases and API configuration. There will be a testing folder within each of these.
+<<<<<<< HEAD
+=======
 
 ### Installation
 ```git clone https://github.com/gycobden/No-Deception/``` into your local machine, cd into the directory, then ```pip install -r requirements.txt```.
+>>>>>>> b61fe74236403cf5095221792570fecd17aef6c1
