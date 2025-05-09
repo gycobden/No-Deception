@@ -24,11 +24,12 @@ def chunk_file(file_name, max_token_size=200):
     chunks, current_chunk, ids, current_len = [], [], [], 0
 
     id_counter = 0
+    id_prefix = file_name.split('/')[-1]
     for sent in sentences:
         tokens = sent.split()
         if current_len + len(tokens) > max_token_size:
             chunks.append(" ".join(current_chunk))
-            ids.append(file_name + f"-{id_counter}")
+            ids.append(id_prefix + f"-{id_counter}")
 
             id_counter += 1
             current_chunk, current_len = [], 0
@@ -38,7 +39,7 @@ def chunk_file(file_name, max_token_size=200):
 
     if current_chunk:
         chunks.append(" ".join(current_chunk))
-    
+        ids.append(id_prefix + f"-{id_counter}")
     return ids, chunks, parsed_text.metadata
 
 
