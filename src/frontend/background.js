@@ -15,13 +15,10 @@ const tldLocales = {
         contexts: ['selection'],
       });
     }
-<<<<<<< HEAD
-=======
   });
 
   chrome.action.onClicked.addListener((tab) => {
     chrome.action.setTitle({
       tabId: tab.id,
       title: `You are on tab: ${tab.id}`});
->>>>>>> b61fe74236403cf5095221792570fecd17aef6c1
   });
