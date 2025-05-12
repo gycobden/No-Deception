@@ -15,5 +15,5 @@ def isEven(x):
         return False
 
 def test_even():
-    assert (2) == True
-    assert (3) == False
+    assert isEven(2) == True
+    assert isEven(3) == False
