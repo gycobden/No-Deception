@@ -5,3 +5,8 @@ pymupdf
 nltk
 sentence-transformers
 chromadb
+email-validator
+httpx
+jinja2
+python-multipart
+uvicorn
