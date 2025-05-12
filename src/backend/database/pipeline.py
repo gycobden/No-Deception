@@ -1,5 +1,6 @@
 from src.backend.database.chunker import chunk_file
 from src.backend.database.embedder import embed_chunk
+from src.backend.database.chroma_client import MetadataDict
 from pathlib import Path
 
 """
@@ -28,6 +29,7 @@ Args:
 
 Return:
     data: List of MetadataDict objects which contains data of each text_chunks
+    file_name: The name of the document
 """
 def process_file(file_name):
     data = dict()
@@ -35,15 +37,24 @@ def process_file(file_name):
     ids, chunks, metadata = chunk_file(file_name)
     embeddings = embed_chunk(chunks)
 
-    data["ids"] = ids
-    data["chunks"] = chunks
-    data["metadata"] = metadata
-    data["embeddings"] = embeddings
+    data = []
+    for i, embedding in enumerate(embeddings):
+        m_data = MetadataDict(ids[i],
+                                embedding,
+                                chunks[i],
+                                metadata["title"],
+                                metadata["author"])
+        data.append(m_data.to_dict())
 
-    return data
+    return data, file_name
 
 def process_folder(client, folder_path):
     pdf_paths = get_pdf_files(folder_path)
     for path in pdf_paths:
+<<<<<<< HEAD
         print(path)
         print(path.name)
+=======
+        metadatas, document = process_file(str(path))
+        client.add_document(document, metadatas)
+>>>>>>> 1f311f2c769a3c1458cef4c2be25c417fa232c78

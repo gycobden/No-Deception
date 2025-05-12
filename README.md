@@ -8,3 +8,6 @@ The Respository will consist of a source code folder with directories for the fr
 
 ### Installation
 ```git clone https://github.com/gycobden/No-Deception/``` into your local machine, cd into the directory, then ```pip install -r requirements.txt```.
+
+### Database Setup
+run ```python3 init_chroma.py --reset=True``` to set up the vector database
