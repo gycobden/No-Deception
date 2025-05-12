@@ -5,8 +5,11 @@ pymupdf
 nltk
 sentence-transformers
 chromadb
+<<<<<<< HEAD
 email-validator
 httpx
 jinja2
 python-multipart
 uvicorn
+=======
+>>>>>>> 981b9744bde44e2c981381e68ada6d6caae97fd6
