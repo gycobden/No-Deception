@@ -51,10 +51,5 @@ def process_file(file_name):
 def process_folder(client, folder_path):
     pdf_paths = get_pdf_files(folder_path)
     for path in pdf_paths:
-<<<<<<< HEAD
-        print(path)
-        print(path.name)
-=======
         metadatas, document = process_file(str(path))
         client.add_document(document, metadatas)
->>>>>>> 1f311f2c769a3c1458cef4c2be25c417fa232c78
