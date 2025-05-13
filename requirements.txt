@@ -6,3 +6,8 @@ nltk
 sentence-transformers
 chromadb
 genai
+email-validator
+httpx
+jinja2
+python-multipart
+uvicorn
