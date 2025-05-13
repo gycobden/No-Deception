@@ -13,8 +13,7 @@ import json
 
 user_text = "Vaccines train your immune system to create antibodies, just as it does when it's exposed to a disease. However, because vaccines contain only killed or weakened forms of germs like viruses or bacteria, they do not cause the disease or put you at risk of its complications."
 
-# Set up Gemini client
-gemini_client = genai.Client(api_key="AIzaSyBd-XDQ3LWeuHTL3Wb3KPY9TZGuZAZ1Fag")
+#api key to use when local
 
 # Embed user text
 embedding = embed_chunk(user_text).tolist()
@@ -47,7 +46,13 @@ def queryLLM_to_JSON(user_text):
         "response_schema": list[Analysis]
             },
     )
+    relevant_articles = list(set(
+    (meta["source_title"], meta["source_author"])
+    for meta in similar_text_chunks["metadatas"][0]))
+
+
     article_analysis: list[Analysis] = response.parsed
-    return article_analysis
+
+    return article_analysis, relevant_articles
 
 pprint.pprint(queryLLM_to_JSON(user_text))
