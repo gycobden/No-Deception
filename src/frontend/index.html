@@ -18,6 +18,9 @@
       border-radius: 5px;
       white-space: pre-wrap;
     }
+    .highlight {
+      background-color: yellow;
+    }
   </style>
 </head>
 <body>
@@ -26,6 +29,7 @@
     <p>This extension analyzes text that you highlight to check for accuracy!</p>
     <p>If you are seeing this text, then try highlighting some text in the article and re-open this popup.</p>
   <h3>Selected Code</h3>
+  <pre id="highlights">Loading...</pre>
   <pre id="truthy">Loading...</pre>
   <pre id="article">Loading...</pre>
   <script src="popup.js"></script>

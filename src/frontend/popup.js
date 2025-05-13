@@ -10,6 +10,8 @@ chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
       },
       (results) => {
         if (chrome.runtime.lastError) {
+          document.getElementById("highlights").textContent =
+            "Error: " + chrome.runtime.lastError.message;
           document.getElementById("truthy").textContent =
             "Error: " + chrome.runtime.lastError.message;
           document.getElementById("article").textContent =
@@ -19,12 +21,14 @@ chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
   
         const selectedText = results?.[0]?.result?.trim();
         if (!selectedText) {
+          document.getElementById("highlights").textContent = "No code selected.";
           document.getElementById("truthy").textContent = "No code selected.";
           document.getElementById("article").textContent = "No code selected.";
           return;
         }
   
         // Display a loading message
+        document.getElementById("highlights").textContent = "Sending to server...";
         document.getElementById("truthy").textContent = "Sending to server...";
         document.getElementById("article").textContent = "Sending to server...";
   
@@ -41,12 +45,16 @@ chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
             return response.json();
           })
           .then((data) => {
+            document.getElementById("highlights").textContent =
+              data.highlights || "No response from server.";
             document.getElementById("truthy").textContent =
               data.truthy || "No response from server.";
-              document.getElementById("article").textContent =
+            document.getElementById("article").textContent =
               data.article || "No response from server.";
           })
           .catch((error) => {
+            document.getElementById("highlights").textContent =
+              "Request failed: " + error.message;
             document.getElementById("truthy").textContent =
               "Request failed: " + error.message;
             document.getElementById("article").textContent =
@@ -55,6 +63,29 @@ chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
       }
     );
   });
+/*
+function implementHightlight(text) {
+  chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+    const tab = tabs[0];
+  
+    chrome.scripting.executeScript(
+      {
+        target: { tabId: tab.id },
+        func: () => highlight(text)
+      }
+    )}
+  )};
+
+function highlight(text) {
+  var inputText = document.getElementById("inputText");
+  var innerHTML = inputText.innerHTML;
+  var index = innerHTML.indexOf(text);
+  if (index >= 0) { 
+    innerHTML = innerHTML.substring(0,index) + "<span class='highlight'>" + innerHTML.substring(index,index+text.length) + "</span>" + innerHTML.substring(index + text.length);
+    inputText.innerHTML = innerHTML;
+  }
+}
+  */
   
 
 /*
