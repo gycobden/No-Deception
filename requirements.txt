@@ -5,6 +5,7 @@ pymupdf
 nltk
 sentence-transformers
 chromadb
+genai
 email-validator
 httpx
 jinja2
