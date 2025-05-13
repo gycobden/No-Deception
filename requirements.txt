@@ -10,3 +10,5 @@ httpx
 jinja2
 python-multipart
 uvicorn
+Flask
+Flask-Cors
