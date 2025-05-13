@@ -22,3 +22,15 @@ const tldLocales = {
       tabId: tab.id,
       title: `You are on tab: ${tab.id}`});
   });
+
+  function getSelectionText() {
+    let text = "";
+
+    if (window.getSelection) {
+        text = window.getSelection().toString();
+    } else if (document.selection && document.selection.type != "Control") {
+        text = document.selection.createRange().text;
+    }
+
+    return text;
+}
