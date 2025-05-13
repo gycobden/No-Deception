@@ -1,22 +1,27 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
+# from backend.llm_integration import generate_response
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
-class StuffRequest(BaseModel):
-    stuff1: int
-    stuff2: int
-    
+# Allow extension to call backend (CORS)
+app.add_middleware(
+    CORSMiddleware,
+    # allow_origins=["chrome-extension://<your-extension-id>"],
+    allow_origins=[
+        "chrome-extension://jnlfehcpklhnldhimhdfkkclghofickd",
+        "http://localhost:3000",  # Add your frontend's URL here
+        "https://your-beta-frontend-url.com"
+    ],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
-@app.get("/")
-async def root():
-    return {"message": "Hello World"}
+class PromptRequest(BaseModel):
+    prompt: str
 
-@app.post("/calculate_stuff")
-async def calculate_stuff(stuff_request: StuffRequest):
-    stuff_request.stuff1
-    stuff_request.stuff2
-
-    message = {f"This is stuff by {stuff_request.stuff1}"}
-
-    return {"message": message}
+@app.post("/generate")
+def generate(prompt_req: PromptRequest):
+    # return {"response": generate_response(prompt_req.prompt)}
+    return {"hello"}
