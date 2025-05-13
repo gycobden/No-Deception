@@ -5,3 +5,4 @@ pymupdf
 nltk
 sentence-transformers
 chromadb
+genai
