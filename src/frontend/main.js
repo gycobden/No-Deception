@@ -1,5 +1,5 @@
 
-
+// POSSIBLY CHANGE FOR AWAIT
 function sendText() {
     fetch("https://jsonplaceholder.typicode.com/todos", {
         method: "POST",
@@ -11,8 +11,23 @@ function sendText() {
         headers: {
           "Content-type": "application/json; charset=UTF-8"
         }
-      });
+      })
+      .then(statusCheck)
+      .then(resp => resp.json())
+      .then(function(resp) {
+        boiler();
+      })
+      .catch(console.error);
+
 }
+
+async function statusCheck(res) {
+  if (!res.ok) {
+    throw new Error(await res.text());
+  }
+  return res;
+}
+
 
 function getSelectionText() {
     let text = "";
