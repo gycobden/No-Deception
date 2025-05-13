@@ -10,19 +10,23 @@ chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
       },
       (results) => {
         if (chrome.runtime.lastError) {
-          document.getElementById("code").textContent =
+          document.getElementById("truthy").textContent =
+            "Error: " + chrome.runtime.lastError.message;
+          document.getElementById("article").textContent =
             "Error: " + chrome.runtime.lastError.message;
           return;
         }
   
         const selectedText = results?.[0]?.result?.trim();
         if (!selectedText) {
-          document.getElementById("code").textContent = "No code selected.";
+          document.getElementById("truthy").textContent = "No code selected.";
+          document.getElementById("article").textContent = "No code selected.";
           return;
         }
   
         // Display a loading message
-        document.getElementById("code").textContent = "Sending to server...";
+        document.getElementById("truthy").textContent = "Sending to server...";
+        document.getElementById("article").textContent = "Sending to server...";
   
         // Send POST request
         fetch("http://127.0.0.1:5000/backend/endpoint", {
@@ -37,11 +41,15 @@ chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
             return response.json();
           })
           .then((data) => {
-            document.getElementById("code").textContent =
-              data.result || "No response from server.";
+            document.getElementById("truthy").textContent =
+              data.truthy || "No response from server.";
+              document.getElementById("article").textContent =
+              data.article || "No response from server.";
           })
           .catch((error) => {
-            document.getElementById("code").textContent =
+            document.getElementById("truthy").textContent =
+              "Request failed: " + error.message;
+            document.getElementById("article").textContent =
               "Request failed: " + error.message;
           });
       }

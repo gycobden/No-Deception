@@ -16,7 +16,7 @@ def process_code():
     # Example processing: count lines and return
     processed_result = f"Received {len(code.splitlines())} lines of code:\n\n{code}"
 
-    return jsonify({'result': processed_result})
+    return jsonify({'highlight': [], 'truthy': True, 'article': [processed_result]})
 
 if __name__ == '__main__':
     app.run(debug=True)
