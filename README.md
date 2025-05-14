@@ -11,3 +11,13 @@ The Respository will consist of a source code folder with directories for the fr
 
 ### Database Setup
 run ```python3 init_chroma.py --reset=True``` to set up the vector database
+
+### Fetch Server/Backend server
+run the "endpoint.py" file. The easiest way we have found it to run "python src\backend\endpoint.py" if your terminal is open in the No-Deception directory.
+
+### Google Chrome extension 
+Go into the extensions page on google chrome
+Turn on developer mode in the top right
+Click the "Load unpacked" button in the top left - this should pull up your file manager
+Find the "src" folder in the No-Deception directory and open in.
+This should add the extension to your page! In order to use it we suggest pinning the extension to your chrome task bar, then select text and click on the extension to make it run!
