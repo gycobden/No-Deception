@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS  # Enables cross-origin requests
 from llm_integration.llm_query import queryLLM_to_JSON
+import sys; sys.dont_write_bytecode = True
 
 app = Flask(__name__)
 CORS(app)  # Allows all origins; you can restrict this if needed

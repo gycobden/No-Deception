@@ -14,8 +14,7 @@ import json
 user_text = "Vaccines train your immune system to create antibodies, just as it does when it's exposed to a disease. However, because vaccines contain only killed or weakened forms of germs like viruses or bacteria, they do not cause the disease or put you at risk of its complications."
 
 # api key to use when local
-genai.configure(api_key="AIzaSyCSDEzKIqAsaG8fkErZGW_Zf-0eUaARwHo")
-# gemini_client = genai.Client(api_key="AIzaSyCSDEzKIqAsaG8fkErZGW_Zf-0eUaARwHo")
+genai.configure(api_key="<API KEY HERE>")
 gemini_client = genai
 
 # Embed user text
