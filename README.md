@@ -20,7 +20,7 @@ Add the Gemini API in the designated line in endpoint.py. Run ```python3 src/bac
 Go to the extensions page on Google Chrome
 Turn on developer mode in the top right
 Click the "Load unpacked" button in the top left - this should pull up your file manager
-Find the "src" folder in the No-Deception directory and open it.
+Select the No-Deception folder
  - If you get an error message about pytest, enter this command into the terminal: Get-ChildItem -Recurse -Directory -Filter "\_\_pycache\_\_" | Remove-Item -Recurse -Force
 
 This should add the extension to your page! To use it, we suggest pinning the extension to your Chrome taskbar, then select text and click on the extension to make it run!
