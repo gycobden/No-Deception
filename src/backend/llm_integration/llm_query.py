@@ -53,6 +53,7 @@ def queryLLM_to_JSON(user_text):
     relevant_articles = list(set(
         (meta["source_title"], meta["source_author"])
         for meta in similar_text_chunks["metadatas"][0]))
+    
 
     # Parse the JSON response text
     article_analysis = json.loads(response.text)

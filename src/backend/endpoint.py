@@ -17,6 +17,7 @@ def process_code():
     article_analysis, relevant_articles = queryLLM_to_JSON(user_text)
 
     print("article_analysis:", article_analysis)
+    print("relevant_articles:", relevant_articles)
 
     # After getting article_analysis from queryLLM_to_JSON
     highlights = [a.get('sentence', '') for a in article_analysis]
