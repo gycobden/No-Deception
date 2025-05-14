@@ -45,8 +45,17 @@ chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
             return response.json();
           })
           .then((data) => {
-            document.getElementById("highlights").textContent =
-              data.highlights || "No response from server.";
+            console.log("Server response:", data);
+
+            if (Array.isArray(data.highlights)) {
+              document.getElementById("highlights").textContent =
+                data.highlights.length > 0
+                  ? data.highlights.join('\n\n')
+                  : "No highlights found.";
+            } else {
+              document.getElementById("highlights").textContent =
+                "No response from server.";
+            }
             document.getElementById("truthy").textContent =
               data.truthy || "No response from server.";
             document.getElementById("article").textContent =
