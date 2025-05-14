@@ -9,17 +9,25 @@ CORS(app)  # Allows all origins; you can restrict this if needed
 def process_code():
     data = request.get_json()
 
-    qreturn = queryLLM_to_JSON(data)
-
     if not data or 'code' not in data:
         return jsonify({'error': 'No code provided'}), 400
 
-    code = data['code']
-    
-    # Example processing: count lines and return
-    #processed_result = f"Received {len(code.splitlines())} lines of code:\n\n{code}"
+    user_text = data['code']
+    article_analysis, relevant_articles = queryLLM_to_JSON(user_text)
 
-    return jsonify({'highlight': qreturn.highlight_sentences, 'truthy': "Quality of info: " + qreturn.category, 'article': qreturn[1]})
+    print("article_analysis:", article_analysis)
+
+    # After getting article_analysis from queryLLM_to_JSON
+    highlights = [a.get('sentence', '') for a in article_analysis]
+    categories = [a.get('category', 'unknown') for a in article_analysis]
+
+    print("highlights:", highlights)
+
+    return jsonify({
+        'highlights': highlights,
+        'truthy': ["Quality of info: " + cat for cat in categories],
+        'article': relevant_articles
+    })
 
 if __name__ == '__main__':
     app.run(debug=True)

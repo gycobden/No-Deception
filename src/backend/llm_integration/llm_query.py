@@ -1,4 +1,4 @@
-from google import genai
+import google.generativeai as genai
 import sys, os
 # Add project root (for config.py)
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../../../")))
@@ -13,7 +13,10 @@ import json
 
 user_text = "Vaccines train your immune system to create antibodies, just as it does when it's exposed to a disease. However, because vaccines contain only killed or weakened forms of germs like viruses or bacteria, they do not cause the disease or put you at risk of its complications."
 
-#api key to use when local
+# api key to use when local
+genai.configure(api_key="AIzaSyCSDEzKIqAsaG8fkErZGW_Zf-0eUaARwHo")
+# gemini_client = genai.Client(api_key="AIzaSyCSDEzKIqAsaG8fkErZGW_Zf-0eUaARwHo")
+gemini_client = genai
 
 # Embed user text
 embedding = embed_chunk(user_text).tolist()
@@ -30,28 +33,30 @@ class Analysis(BaseModel):
 
 # Query Gemini LLM
 def queryLLM_to_JSON(user_text):
-    response = gemini_client.models.generate_content(
-        model="gemini-2.0-flash",
-        contents=
-            "Here is the correct information:\n" +
-            database_text +
-            "\nHere is some user text:\n" +
-            user_text +
+    model = genai.GenerativeModel("gemini-2.0-flash")
+    response = model.generate_content(
+        [
+            "Here is the correct information:\n" + database_text +
+            "\nHere is some user text:\n" + user_text +
             "\nCan you compare the user text to the correct information and " +
             "do a similarity comparison? If the user text is extremely different, " +
-            "show those sentences from the user text and give it a category of 'bad' " +
-            "if it is similar give it a category of 'good'. Just give me the highligted sentences and the category no need to summarize",
-            config={
-        "response_mime_type": "application/json",
-        "response_schema": list[Analysis]
-            },
+            "show those sentences from the user text labeled as 'sentence' and give it a category of 'bad' " +
+            "if it is similar give it a category of 'good'. Just give me the highlighted sentences and the category no need to summarize"
+        ],
+        generation_config={
+            "response_mime_type": "application/json",
+            # Add other config options as needed
+        }
     )
+
+    print("Raw LLM response:", response.text)
+
     relevant_articles = list(set(
-    (meta["source_title"], meta["source_author"])
-    for meta in similar_text_chunks["metadatas"][0]))
+        (meta["source_title"], meta["source_author"])
+        for meta in similar_text_chunks["metadatas"][0]))
 
-
-    article_analysis: list[Analysis] = response.parsed
+    # Parse the JSON response text
+    article_analysis = json.loads(response.text)
 
     return article_analysis, relevant_articles
 
