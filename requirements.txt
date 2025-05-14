@@ -5,8 +5,11 @@ pymupdf
 nltk
 sentence-transformers
 chromadb
+google-generativeai
 email-validator
 httpx
 jinja2
 python-multipart
 uvicorn
+Flask
+Flask-Cors

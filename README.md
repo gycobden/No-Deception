@@ -4,10 +4,25 @@ Our primary source of knowledge is rife with misinformation, and it can be diffi
 ### Goal
 We want to provide an easy way to navigate the internet by removing the overhead of fact-checking. We seek to provide the ability to see at a glance whether a site or post is biased, contains inaccuracies, or is malicious.
 ### Repository Layout
-The Respository will consist of a source code folder with directories for the front end and back end. The front end will have the UI and assets, and the back end will have databases and API configuration. There will be a testing folder within each of these.
+The Repository consists of a source code folder with directories for the front end and back end. The frontend contains the UI and interfaces with the Chrome extension. The backend contains databases, the LLM configuration, and Flask API configuration. There is a testing folder within each of these.
 
-### Installation
+## Installation and Set Up
 ```git clone https://github.com/gycobden/No-Deception/``` into your local machine, cd into the directory, then ```pip install -r requirements.txt```.
+ - If you get a message with "ERROR: Failed building wheel for tiktoken":
+    Go into requirements.txt and comment out "genai". This will remove some server functionality, but should allow the rest of the system to build.
 
-### Database Setup
+### Database
 run ```python3 init_chroma.py --reset=True``` to set up the vector database
+ - If this command doesn't work, use python instead of python3.
+
+### Fetch Server/Backend server
+Run the "endpoint.py" file, i.e., type "python src\backend\endpoint.py" in the No-Deception directory.
+
+### Google Chrome extension 
+Go to the extensions page on Google Chrome
+Turn on developer mode in the top right
+Click the "Load unpacked" button in the top left - this should pull up your file manager
+Find the "src" folder in the No-Deception directory and open it.
+ - If you get an error message about pytest, enter this command into the terminal: Get-ChildItem -Recurse -Directory -Filter "\_\_pycache\_\_" | Remove-Item -Recurse -Force
+
+This should add the extension to your page! To use it, we suggest pinning the extension to your Chrome taskbar, then select text and click on the extension to make it run!

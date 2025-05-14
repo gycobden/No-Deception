@@ -6,6 +6,7 @@ import shutil
 import config
 from src.backend.database.chroma_client import ChromaClient
 from src.backend.database.pipeline import process_folder
+import sys; sys.dont_write_bytecode = True
 
 
 def str2bool(value):
