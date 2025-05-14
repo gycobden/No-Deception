@@ -7,9 +7,7 @@ We want to provide an easy way to navigate the internet by removing the overhead
 The Repository consists of a source code folder with directories for the front end and back end. The frontend contains the UI and interfaces with the Chrome extension. The backend contains databases, the LLM configuration, and Flask API configuration. There is a testing folder within each of these.
 
 ## Installation and Set Up
-```git clone https://github.com/gycobden/No-Deception/``` into your local machine, cd into the directory, then ```pip install -r requirements.txt```.
- - If you get a message with "ERROR: Failed building wheel for tiktoken":
-    Go into requirements.txt and comment out "genai". This will remove some server functionality, but should allow the rest of the system to build.
+```git clone https://github.com/gycobden/No-Deception/``` into your local machine, cd into the directory, then ```pip install -r requirements.txt```. It's recommended that a virtual environment be set up to download these dependencies. 
 
 ### Database
 Run ```python3 init_chroma.py --reset=True``` to set up the vector database
