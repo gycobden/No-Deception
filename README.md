@@ -8,16 +8,22 @@ The Repository consists of a source code folder with directories for the front e
 
 ## Installation and Set Up
 ```git clone https://github.com/gycobden/No-Deception/``` into your local machine, cd into the directory, then ```pip install -r requirements.txt```.
+  If you get a message with "ERROR: Failed building wheel for tiktoken":
+    Go into requirements.txt and comment out "genai". This will remove some server functionality, but should allow the rest of the system to build.
 
 ### Database
 run ```python3 init_chroma.py --reset=True``` to set up the vector database
+  If this command doesn't work, use python instead of python3.
 
 ### Fetch Server/Backend server
-Run the "endpoint.py" file. The easiest way we have found is to run "python src\backend\endpoint.py" in the No-Deception directory.
+Run the "endpoint.py" file, i.e., type "python src\backend\endpoint.py" in the No-Deception directory.
 
 ### Google Chrome extension 
 Go to the extensions page on Google Chrome
 Turn on developer mode in the top right
 Click the "Load unpacked" button in the top left - this should pull up your file manager
 Find the "src" folder in the No-Deception directory and open it.
+  If you get an error message about pytest, enter this command into the terminal: 
+    Get-ChildItem -Recurse -Directory -Filter "__pycache__" | Remove-Item -Recurse -Force
+
 This should add the extension to your page! To use it, we suggest pinning the extension to your Chrome taskbar, then select text and click on the extension to make it run!
