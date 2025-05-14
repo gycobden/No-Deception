@@ -16,7 +16,7 @@ run ```python3 init_chroma.py --reset=True``` to set up the vector database
  - If this command doesn't work, use python instead of python3.
 
 ### Fetch Server/Backend server
-Run the "endpoint.py" file, i.e., type "python src\backend\endpoint.py" in the No-Deception directory.
+run ```python3 src/backend/endpoint.py``` in the No-Deception directory in order to run the "endpoint.py" file
 
 ### Google Chrome extension 
 Go to the extensions page on Google Chrome
