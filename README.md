@@ -12,11 +12,11 @@ The Repository consists of a source code folder with directories for the front e
     Go into requirements.txt and comment out "genai". This will remove some server functionality, but should allow the rest of the system to build.
 
 ### Database
-run ```python3 init_chroma.py --reset=True``` to set up the vector database
+Run ```python3 init_chroma.py --reset=True``` to set up the vector database
  - If this command doesn't work, use python instead of python3.
 
 ### Fetch Server/Backend server
-run ```python3 src/backend/endpoint.py``` in the No-Deception directory in order to run the "endpoint.py" file
+Add the Gemini API in the designated line in endpoint.py. Run ```python3 src/backend/endpoint.py``` in the No-Deception directory.
 
 ### Google Chrome extension 
 Go to the extensions page on Google Chrome
