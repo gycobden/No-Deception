@@ -14,7 +14,7 @@ Run ```python3 init_chroma.py --reset=True``` to set up the vector database
  - If this command doesn't work, use python instead of python3.
 
 ### Fetch Server/Backend server
-Add the Gemini API in the designated line in endpoint.py. Run ```python3 src/backend/endpoint.py``` in the No-Deception directory.
+Add the Gemini API Key on Line 17 of src/backend/llm_integration/llm_query.py, then run ```python3 src/backend/endpoint.py``` in the No-Deception directory.
 
 ### Google Chrome extension 
 - Go to the extensions page on Google Chrome
