@@ -17,22 +17,10 @@ Run ```python3 init_chroma.py --reset=True``` to set up the vector database
 Add the Gemini API Key on Line 17 of src/backend/llm_integration/llm_query.py, then run ```python3 src/backend/endpoint.py``` in the No-Deception directory.
 
 ### Google Chrome extension 
-<<<<<<< HEAD
-Go to the extensions page on Google Chrome
-Turn on developer mode in the top right
-Click the "Load unpacked" button in the top left - this should pull up your file manager
+Go to the extensions page on Google Chrome.
+Turn on developer mode in the top right.
+Click the "Load unpacked" button in the top left - this should pull up your file manager.
 Find the "src" folder in the No-Deception directory and open it.
-<<<<<<< HEAD
- - If you get an error message about pytest, enter this command into the terminal: Get-ChildItem -Recurse -Directory -Filter "__pycache__" | Remove-Item -Recurse -Force
-=======
- - If you get an error message about pytest, enter this command into the terminal: Get-ChildItem -Recurse -Directory -Filter "\_\_pycache\_\_" | Remove-Item -Recurse -Force
->>>>>>> 5293904 (Added to readme)
-=======
-- Go to the extensions page on Google Chrome
-- Turn on developer mode in the top right
-- Click the "Load unpacked" button in the top left - this should pull up your file manager
-- Select the No-Deception folder
    * If you get an error message about pytest, enter this command into the terminal: Get-ChildItem -Recurse -Directory -Filter "\_\_pycache\_\_" | Remove-Item -Recurse -Force
->>>>>>> 290c50a (Update README.md)
 
 This should add the extension to your page! To use it, we suggest pinning the extension to your Chrome taskbar, then select text and click on the extension to make it run!
