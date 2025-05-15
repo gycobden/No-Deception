@@ -4,14 +4,14 @@
     "version": "1.0",
     "manifest_version": 3,
     "icons": {
-      "16": "src/frontend/img/hello_extensions.png",
-      "32": "src/frontend/img/hello_extensions.png",
-      "48": "src/frontend/img/hello_extensions.png",
-      "128": "src/frontend/img/hello_extensions.png"
+      "16": "src/frontend/img/shield_logo.png",
+      "32": "src/frontend/img/shield_logo.png",
+      "48": "src/frontend/img/shield_logo.png",
+      "128": "src/frontend/img/shield_logo.png"
     },
     "action": {
       "default_popup": "src/frontend/index.html",
-      "default_icon": "src/frontend/img/hello_extensions.png"
+      "default_icon": "src/frontend/img/shield_logo.png"
     },
     "background": {
       "service_worker": "src/frontend/background.js"
