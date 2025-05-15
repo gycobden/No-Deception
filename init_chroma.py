@@ -1,12 +1,12 @@
 # python init_chroma.py --reset=True
 
+import sys; sys.dont_write_bytecode = True # prevent creation __pycache__ folder
 import os
 import argparse
 import shutil
 import config
 from src.backend.database.chroma_client import ChromaClient
 from src.backend.database.pipeline import process_folder
-
 
 def str2bool(value):
     return value.lower() in ("true")
