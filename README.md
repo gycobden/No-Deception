@@ -32,5 +32,14 @@ Email ```evanmao@uw.edu``` to report any bugs encountered in installation or usi
 ## Known Bugs
 n/a
 
+## Developer Documentation
+If you want to contribute to our project, please keep reading! Your work is greatly appreciated. :D
+
 ### Repository Layout
 The Repository consists of a source code folder with directories for the front end and back end. The frontend contains the UI and interfaces with the Chrome extension. The backend contains databases, the LLM configuration, and Flask API configuration. There is a testing folder within each of these.
+
+### Building and Testing
+
+### Adding New Tests
+
+### Documentation
