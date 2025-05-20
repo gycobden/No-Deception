@@ -1,5 +1,19 @@
 //THIS IS RUNNING
 
+document.querySelector('#go-to-options').innerHTML = `Hello World!`;
+
+document.querySelector('#go-to-options').addEventListener('click', function() {
+  document.querySelector('#hhh').innerHTML = `Hello World!`;
+});
+
+function options() {
+  if (chrome.runtime.openOptionsPage) {
+    chrome.runtime.openOptionsPage();
+  } else {
+    window.open(chrome.runtime.getURL('options.html'));
+  }
+}
+
 chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
     const tab = tabs[0];
   
@@ -72,40 +86,3 @@ chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
       }
     );
   });
-/*
-function implementHightlight(text) {
-  chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-    const tab = tabs[0];
-  
-    chrome.scripting.executeScript(
-      {
-        target: { tabId: tab.id },
-        func: () => highlight(text)
-      }
-    )}
-  )};
-
-function highlight(text) {
-  var inputText = document.getElementById("inputText");
-  var innerHTML = inputText.innerHTML;
-  var index = innerHTML.indexOf(text);
-  if (index >= 0) { 
-    innerHTML = innerHTML.substring(0,index) + "<span class='highlight'>" + innerHTML.substring(index,index+text.length) + "</span>" + innerHTML.substring(index + text.length);
-    inputText.innerHTML = innerHTML;
-  }
-}
-  */
-  
-
-/*
-chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-    chrome.tabs.sendMessage(tabs[0].id, { action: "getSelectedCode" }, (response) => {
-    if (chrome.runtime.lastError) {
-        document.getElementById("code").textContent = "Error: " + chrome.runtime.lastError.message;
-      } else {
-        document.getElementById("code").textContent = response.code || "No code selected.";
-      }
-    });
-  });
-
-*/
