@@ -45,7 +45,7 @@ The Repository consists of a source code folder with directories for the front e
 Run ```pytest``` to run test files in src/backend/tests.
 
 ### Adding New Tests
-## LMM Integration Testing:
+# LMM Integration Testing:
 To add a new test, navigate to ```src/backend/llm_integration/tests.py```. To write a new test, follow the convention: llm_querytest_testName. Ensure that testName is a simple short description of the test. These tests must be focused on querying the llm, including the prompts and return types.
 
 ### Building a Release
