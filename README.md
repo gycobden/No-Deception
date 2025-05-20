@@ -35,11 +35,17 @@ n/a
 ## Developer Documentation
 If you want to contribute to our project, please keep reading! Your work is greatly appreciated. :D
 
+### Obtaining Source Code
+Simply run the ```git clone https://github.com/gycobden/No-Deception/``` command into your terminal
+
 ### Repository Layout
 The Repository consists of a source code folder with directories for the front end and back end. The frontend contains the UI and interfaces with the Chrome extension. The backend contains databases, the LLM configuration, and Flask API configuration. There is a testing folder within each of these.
 
 ### Building and Testing
+Run ```pytest``` to run test files in src/backend/tests.
 
 ### Adding New Tests
 
-### Documentation
+### Building a Release
+For privacy and security reasons, you will need to generate your own API key. Step 4 of the "Installation and Set Up" section describes where to insert it in the project.
+Update the version number in the documentation prior to invoking the build system for clarity.
