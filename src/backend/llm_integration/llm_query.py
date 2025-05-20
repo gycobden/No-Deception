@@ -14,7 +14,8 @@ import json
 user_text = "Vaccines train your immune system to create antibodies, just as it does when it's exposed to a disease. However, because vaccines contain only killed or weakened forms of germs like viruses or bacteria, they do not cause the disease or put you at risk of its complications."
 
 # api key to use when local
-genai.configure(api_key="<API KEY HERE>")
+
+genai.configure(api_key=os.getenv("GENAI_API_KEY"))
 gemini_client = genai
 
 # Embed user text
@@ -35,7 +36,7 @@ def queryLLM_to_JSON(user_text):
     model = genai.GenerativeModel("gemini-2.0-flash")
     response = model.generate_content(
         [
-            "Here is the correct information:\n" + database_text +
+            "Here is information from trustworthy documents:\n" + database_text +
             "\nHere is some user text:\n" + user_text +
             "\nCan you compare the user text to the correct information and " +
             "do a similarity comparison? If the user text is extremely different, " +
