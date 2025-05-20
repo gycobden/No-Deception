@@ -5,14 +5,14 @@
     "manifest_version": 3,
     "options_page": "options.html",
     "icons": {
-      "16": "img/hello_extensions.png",
-      "32": "img/hello_extensions.png",
-      "48": "img/hello_extensions.png",
-      "128": "img/hello_extensions.png"
+      "16": "img/shield_logo.png",
+      "32": "img/shield_logo.png",
+      "48": "img/shield_logo.png",
+      "128": "img/shield_logo.png"
     },
     "action": {
       "default_popup": "index.html",
-      "default_icon": "img/hello_extensions.png"
+      "default_icon": "img/shield_logo.png"
     },
     "background": {
       "service_worker": "background.js"
