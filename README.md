@@ -48,6 +48,9 @@ Run ```pytest``` to run test files in src/backend/tests.
 #### LLM Integration Testing:
 To add a new test, navigate to ```src/backend/llm_integration/tests.py```. To write a new test, follow the convention: llm_querytest_testName. Ensure that testName is a simple short description of the test. These tests must be focused on querying the llm, including the prompts and return types.
 
+#### Database Testing:
+Navigate to ```src/backend/tests```, where you will see ```test_chromadb.py``` and ```test_docu_processing.py```. To add tests, put the ```@pytest.fixure``` above each test function, and each test should be preceded with ```test_```. These tests must be focused on verifying database and document processing.
+
 ### Building a Release
 For privacy and security reasons, you will need to generate your own API key. Step 4 of the "Installation and Set Up" section describes where to insert it in the project.
 Update the version number in the documentation prior to invoking the build system for clarity.
