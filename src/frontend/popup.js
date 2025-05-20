@@ -1,14 +1,6 @@
 //THIS IS RUNNING
 
-import { send } from "process";
-
-function options() {
-  if (chrome.runtime.openOptionsPage) {
-    chrome.runtime.openOptionsPage();
-  } else {
-    window.open(chrome.runtime.getURL('options.html'));
-  }
-}
+//import { send } from "process";
 
 export async function sendCodeToServer(selectedText) {
   const response = await fetch("http://127.0.0.1:5000/backend/endpoint", {
