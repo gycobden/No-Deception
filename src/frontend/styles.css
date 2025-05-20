@@ -1,0 +1,18 @@
+body {
+    width: 300px;
+    height: 400px;
+}
+h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+pre {
+    background: #f0f0f0;
+    padding: 10px;
+    border-radius: 5px;
+    white-space: pre-wrap;
+}
+#optext {
+    text-align: center;
+}

@@ -1,10 +1,6 @@
 //THIS IS RUNNING
 
-document.querySelector('#go-to-options').innerHTML = `Hello World!`;
-
-document.querySelector('#go-to-options').addEventListener('click', function() {
-  document.querySelector('#hhh').innerHTML = `Hello World!`;
-});
+import { send } from "process";
 
 function options() {
   if (chrome.runtime.openOptionsPage) {
@@ -12,6 +8,18 @@ function options() {
   } else {
     window.open(chrome.runtime.getURL('options.html'));
   }
+}
+
+export async function sendCodeToServer(selectedText) {
+  const response = await fetch("http://127.0.0.1:5000/backend/endpoint", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ code: selectedText })
+  });
+  if (!response.ok) throw new Error("Server error");
+  return response.json();
 }
 
 chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
@@ -47,17 +55,7 @@ chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
         document.getElementById("article").textContent = "Sending to server...";
   
         // Send POST request
-        fetch("http://127.0.0.1:5000/backend/endpoint", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({ code: selectedText })
-        })
-          .then((response) => {
-            if (!response.ok) throw new Error("Server error");
-            return response.json();
-          })
+        sendCodeToServer(selectedText)
           .then((data) => {
             console.log("Server response:", data);
 
