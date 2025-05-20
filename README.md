@@ -9,7 +9,7 @@ Our primary source of knowledge is rife with misinformation, and it can be diffi
 5) Go to the extensions page on Google Chrome, turn on developer mode, load in the contents by pressing the "Load unpacked" button in the top left and select the No-Deception folder
    - If you get an error message about pytest, type ```Get-ChildItem -Recurse -Directory -Filter "\_\_pycache\_\_" | Remove-Item -Recurse -Force``` into your terminal
 
-This should add the extension to your page! 
+This should add the extension to your page!
 
 ## Usage
 Simply go to a website, highlight a piece of text that you want fact-checked, then click on the No Deception google extension icon and see the magic!
@@ -41,5 +41,7 @@ The Repository consists of a source code folder with directories for the front e
 ### Building and Testing
 
 ### Adding New Tests
+## LMM Integration Testing:
+To add a new test, navigate to ```src/backend/llm_integration/tests.py```. To write a new test, follow the convention: llm_querytest_testName. Ensure that testName is a simple two-word description of the test. These tests must be focused on querying the llm, including the prompts and return types.
 
 ### Documentation
