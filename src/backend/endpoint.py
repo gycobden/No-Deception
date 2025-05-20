@@ -17,12 +17,12 @@ def process_code():
     article_analysis, relevant_articles = queryLLM_to_JSON(user_text)
 
     # After getting article_analysis from queryLLM_to_JSON
-    highlights = [a.get('sentence', '') for a in article_analysis]
-    categories = [a.get('category', 'unknown') for a in article_analysis]
+    highlights = article_analysis["sentences"]
+    category = article_analysis["category"]
 
     return jsonify({
         'highlights': highlights,
-        'truthy': ["Quality of info: " + cat for cat in categories],
+        'truthy': ["Quality of info: " + category],
         'article': relevant_articles
     })
 
