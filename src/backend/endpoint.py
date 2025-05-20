@@ -16,14 +16,9 @@ def process_code():
     user_text = data['code']
     article_analysis, relevant_articles = queryLLM_to_JSON(user_text)
 
-    print("article_analysis:", article_analysis)
-    print("relevant_articles:", relevant_articles)
-
     # After getting article_analysis from queryLLM_to_JSON
     highlights = article_analysis["sentences"]
     category = article_analysis["category"]
-
-    print("highlights:", highlights)
 
     return jsonify({
         'highlights': highlights,
