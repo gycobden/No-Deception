@@ -1,4 +1,4 @@
-# No-Deception
+# No Deception
 Our primary source of knowledge is rife with misinformation, and it can be difficult to verify sources and avoid confirmation bias. No Deception provides live fact-checking and bias readings of any post or article. It will back up statistics, link the related studies, and provide external sources for further exploration.
 
 ## Installation and Set Up
