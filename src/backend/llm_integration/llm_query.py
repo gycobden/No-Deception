@@ -31,7 +31,12 @@ def queryLLM_to_JSON(user_text):
     # Access Chroma DB
     chroma_client = ChromaClient(config.CHROMA_PATH, config.COLLECTION_NAME)
     similar_text_chunks = chroma_client.find_similar_documents(embedding, 5)
+
+    print("stc: ", similar_text_chunks)
+
     database_text = "\n".join([meta["text_chunk"] for meta in similar_text_chunks["metadatas"][0]])
+
+    print("database text: ", database_text)
 
     model = genai.GenerativeModel("gemini-2.0-flash")
 
@@ -40,13 +45,13 @@ def queryLLM_to_JSON(user_text):
     "\nHere is some user text:\n" + user_text +
     "\nCompare the user text to the trustworthy information above. " +
     "For each sentence in the user text, if it contains information that directly conflicts with the given documents, " +
-    "include it in the output as a string. Otherwise, do not add it." +
-    "Then, assign an overall 'category' to the user text, choosing one of: 'no info', 'bad', 'questionable', or 'good'.\n" +
+    "include it in the output as a string. If it contains information that does not directly" +
+    "conflict with the documents, do not add it." + 
+    "Then, assign an overall 'category' to the user text, choosing one of: 'couldn't find relevant documents', 'bad', or 'good'.\n" +
     "Criteria:\n"
     " - good: text aligns with claims in the document\n"
-    " - questionable: text mostly aligns but contains charged language\n"
-    " - bad: text contradicts facts in the article\n"
-    " - no info: text does not align with any topic in the article\n"
+    " - bad: text contradicts facts in the document\n"
+    " - couldn't find relevant documents: text does not align with any trustworthy document text\n"
     "Return ONLY a JSON object with two fields:\n"
     "  'sentences': a list of the untrustworthy sentences (strings),\n"
     "  'category': the overall category (string).\n"
