@@ -20,6 +20,8 @@ def process_code():
     highlights = article_analysis["sentences"]
     category = article_analysis["category"]
 
+    print("relevant articles: ", relevant_articles)
+
     return jsonify({
         'highlights': highlights,
         'truthy': ["Quality of info: " + category],
