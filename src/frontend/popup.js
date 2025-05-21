@@ -1,19 +1,5 @@
 //THIS IS RUNNING
 
-//import { send } from "process";
-
-export async function sendCodeToServer(selectedText) {
-  const response = await fetch("http://127.0.0.1:5000/backend/endpoint", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({ code: selectedText })
-  });
-  if (!response.ok) throw new Error("Server error");
-  return response.json();
-}
-
 chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
     const tab = tabs[0];
   
@@ -47,7 +33,17 @@ chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
         document.getElementById("article").textContent = "Sending to server...";
   
         // Send POST request
-        sendCodeToServer(selectedText)
+        fetch("http://127.0.0.1:5000/backend/endpoint", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ code: selectedText })
+        })
+          .then((response) => {
+            if (!response.ok) throw new Error("Server error");
+            return response.json();
+          })
           .then((data) => {
             console.log("Server response:", data);
 
