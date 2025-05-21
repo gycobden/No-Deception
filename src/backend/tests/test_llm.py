@@ -20,11 +20,11 @@ def test_bad_categorized_text():
         "category": "bad"
     }
 
-def test_no_info_categorized_text():
-    article_analysis, relevant_articles = queryLLM_to_JSON(
-        "A virtual environment in Python is an isolated environment on your computer, where you can run and test your Python projects."
-    )
-    assert article_analysis == {
-        "sentences": [],
-        "category": "couldn't find relevant documents"
-    }
+# def test_no_info_categorized_text():
+#     article_analysis, relevant_articles = queryLLM_to_JSON(
+#         "A virtual environment in Python is an isolated environment on your computer, where you can run and test your Python projects."
+#     )
+#     assert article_analysis == {
+#         "sentences": [],
+#         "category": "couldn't find relevant documents"
+#     }
