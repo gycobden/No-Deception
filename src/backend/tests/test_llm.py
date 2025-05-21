@@ -22,8 +22,7 @@ def test_bad_categorized_text():
 
 def test_no_info_categorized_text():
     article_analysis, relevant_articles = queryLLM_to_JSON(
-        "Your public repository must contain a complete user manual. " +
-        "Anyone looking at your repository should be able to easily find the user manual. "
+        "A virtual environment in Python is an isolated environment on your computer, where you can run and test your Python projects."
     )
     assert article_analysis == {
         "sentences": [],
