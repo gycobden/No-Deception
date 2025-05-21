@@ -22,7 +22,8 @@ def test_bad_categorized_text():
 
 def test_no_info_categorized_text():
     article_analysis, relevant_articles = queryLLM_to_JSON(
-        "There are 1001 species of tree, don't question me on that."
+        "Your public repository must contain a complete user manual. " +
+        "Anyone looking at your repository should be able to easily find the user manual. "
     )
     assert article_analysis == {
         "sentences": [],
