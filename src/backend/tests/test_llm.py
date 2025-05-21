@@ -1,19 +1,30 @@
-#sample test - raghavi for CI build system trigger
-def add(a, b):
-    return a + b
+from src.backend.llm_integration.llm_query import queryLLM_to_JSON
 
-def test_add():
-    assert add(2, 3) == 5
-    assert add(-1, 1) == 0
+def test_good_categorized_text():
+    article_analysis, relevant_articles = queryLLM_to_JSON(
+        "We become immune to (or protected from) a disease when" +
+        "our bodies create specific antibodies to fight that disease. " +
+        " Vaccines contain ingredients that help your body build this immunity."
+    )
+    assert article_analysis == {
+        "sentences": [],
+        "category": "good"
+    }
 
+def test_bad_categorized_text():
+    article_analysis, relevant_articles = queryLLM_to_JSON(
+        "Vaccines give you cancer."
+    )
+    assert article_analysis == {
+        "sentences": ["Vaccines give you cancer."],
+        "category": "bad"
+    }
 
-# sample test - chi for CI build system trigger
-def isEven(x):
-    if x % 2 == 0:
-        return True
-    else:
-        return False
-
-def test_even():
-    assert isEven(2) == True
-    assert isEven(3) == False
+def test_no_info_categorized_text():
+    article_analysis, relevant_articles = queryLLM_to_JSON(
+        "There are 1001 species of tree, don't question me on that."
+    )
+    assert article_analysis == {
+        "sentences": [],
+        "category": "couldn't find relevant documents"
+    }
