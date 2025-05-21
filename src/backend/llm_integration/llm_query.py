@@ -46,7 +46,7 @@ def queryLLM_to_JSON(user_text):
     "\nCompare the user text to the trustworthy information above. " +
     "For each sentence in the user text, if it contains information that directly conflicts with the given documents, " +
     "include it in the output as a string. If it contains information that does not directly" +
-    "conflict with the documents, do not add it." + 
+    "conflict with the trustworthy documents provide, do not add it." + 
     "Then, assign an overall 'category' to the user text, choosing one of: 'couldn't find relevant documents', 'bad', or 'good'.\n" +
     "Criteria:\n"
     " - good: text aligns with claims in the document\n"
