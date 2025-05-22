@@ -65,16 +65,16 @@ NoDeception/
 ├──.github/workflows/
 ├──_pycache_/
 ├──documents/
-│  ├──requirements.pdf    # class related documentation
+│  ├──requirements.pdf                  # class related documentation
 ├──src/
 │   ├──backend/
-        ├──articles/          #stores articles for DB
-        ├──database/          #database initialization
-        ├──llm_integration/   #integration of gemini LLM
-        ├──tests/             #DB and LLM tests
-        ├──__init__.py
-        ├──endpoint.py        #backend endpoint to connect to frontend
-│   ├──frontend/              #establishing google extensions
+│       ├──articles/                    #stores articles for DB
+│        ├──database/                   #database initialization
+│        ├──llm_integration/            #integration of gemini LLM
+│       ├──tests/                       #DB and LLM tests
+│        ├──__init__.py
+│       ├──endpoint.py                  #backend endpoint to connect to frontend
+│   ├──frontend/                        #establishing google extensions
 ├──.gitignore/
 ├──README.md
 ├──config.py
