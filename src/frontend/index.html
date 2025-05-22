@@ -1,38 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Selected Code</title>
-  <style>
-    body {
-      width: 300px;
-      height: 400px;
-    }
-    h1 {
-      font-size: 24px;
-      margin-bottom: 10px;
-      text-align: center;
-    }
-    pre {
-      background: #f0f0f0;
-      padding: 10px;
-      border-radius: 5px;
-      white-space: pre-wrap;
-    }
-    .highlight {
-      background-color: yellow;
-    }
-  </style>
+  <title>No Deception</title>
+  <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
 </head>
 <body>
   <h1>No Deception</h1>
     <p>Welcome to the No Deception page!</p>
     <p>This extension analyzes text that you highlight to check for accuracy!</p>
     <p>If you are seeing this text, then try highlighting some text in the article and re-open this popup.</p>
-  <h3>Selected Code</h3>
+  <h3 id="hhh">Selected Code</h3>
   <pre id="highlights">Loading...</pre>
   <pre id="truthy">Loading...</pre>
   <pre id="article">Loading...</pre>
   <script src="popup.js"></script>
+  <footer>
+    <a id="optext"href="options.html">Extension Options</a>
+  </footer>
 </body>
 </html>
 

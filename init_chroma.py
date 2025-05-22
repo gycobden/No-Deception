@@ -15,7 +15,6 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--reset", type=str2bool, nargs='?', const=True, default=False, help="Reset and reinitialize ChromaDB")
     args = parser.parse_args()
-    print(args.reset)
 
     if args.reset:
         if os.path.exists(config.CHROMA_PATH):
