@@ -58,7 +58,6 @@ Navigate to ```src/backend/tests```, where you will see ```test_chromadb.py``` a
 For privacy and security reasons, you will need to generate your API key and add it as an environment variable.
 Update the version number in the documentation before invoking the build system for clarity.
 
-
 ## Repository Structure
 ```
 NoDeception/
@@ -82,5 +81,7 @@ NoDeception/
 ├──pytest.ini
 └──requirements.txt
 
-
 ```
+### Building a Release
+For privacy and security reasons, you will need to generate your API key and add it as an environment variable.
+Update the version number in the documentation before invoking the build system for clarity.

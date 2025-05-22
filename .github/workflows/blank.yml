@@ -48,3 +48,5 @@ jobs:
 
       - name: Run tests
         run: pytest
+        env:
+          GENAI_API_KEY: ${{ secrets.GENAI_API_KEY }}

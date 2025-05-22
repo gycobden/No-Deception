@@ -3,18 +3,19 @@
     "description": "Checks claims for accuracy and honesty.",
     "version": "1.0",
     "manifest_version": 3,
+    "options_page": "options.html",
     "icons": {
-      "16": "src/frontend/img/shield_logo.png",
-      "32": "src/frontend/img/shield_logo.png",
-      "48": "src/frontend/img/shield_logo.png",
-      "128": "src/frontend/img/shield_logo.png"
+      "16": "img/shield_logo.png",
+      "32": "img/shield_logo.png",
+      "48": "img/shield_logo.png",
+      "128": "img/shield_logo.png"
     },
     "action": {
-      "default_popup": "src/frontend/index.html",
-      "default_icon": "src/frontend/img/shield_logo.png"
+      "default_popup": "index.html",
+      "default_icon": "img/shield_logo.png"
     },
     "background": {
-      "service_worker": "src/frontend/background.js"
+      "service_worker": "background.js"
     },
     "host_permissions": [
       "http://127.0.0.1:5000/"
