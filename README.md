@@ -80,7 +80,7 @@ NoDeception/
 ├──config.py
 ├──init_chroma.py
 ├──pytest.ini
-├──requirements.txt
-└──
+└──requirements.txt
+
 
 ```
