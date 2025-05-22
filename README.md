@@ -35,7 +35,7 @@ Documents don't display in pop-up - try rerunning ```python3 init_chroma.py --re
 If you want to contribute to our project, please keep reading! Your work is greatly appreciated. :D
 
 ### Obtaining Source Code
-Simply run the ```git clone https://github.com/gycobden/No-Deception/``` command in your terminal and follow the same procedure as detailed in installation and setup 
+Simply run the ```git clone https://github.com/gycobden/No-Deception/``` command in your terminal and follow the same procedure as detailed in installation and setup
 
 ### Repository Layout
 The Repository consists of a source code folder with directories for the front end and back end. The frontend contains the UI and interfaces with the Chrome extension. The backend contains databases, the LLM configuration, and Flask API configuration. Tests for the backend and frontend are in the respective backend and frontend folders.
@@ -54,6 +54,34 @@ To add a new test, navigate to ```src/backend/llm_integration/tests.py```. To wr
 #### Database Testing:
 Navigate to ```src/backend/tests```, where you will see ```test_chromadb.py``` and ```test_docu_processing.py```. To add tests, put the ```@pytest.fixure``` above each test function, and each test should be preceded with ```test_```. These tests must be focused on verifying the database and document processing.
 
+### Building a Release
+For privacy and security reasons, you will need to generate your API key and add it as an environment variable.
+Update the version number in the documentation before invoking the build system for clarity.
+
+## Repository Structure
+```
+NoDeception/
+├──.github/workflows/
+├──_pycache_/
+├──documents/
+│  ├──requirements.pdf                  # class related documentation
+├──src/
+│   ├──backend/
+│       ├──articles/                    #stores articles for DB
+│        ├──database/                   #database initialization
+│        ├──llm_integration/            #integration of gemini LLM
+│       ├──tests/                       #DB and LLM tests
+│        ├──__init__.py
+│       ├──endpoint.py                  #backend endpoint to connect to frontend
+│   ├──frontend/                        #establishing google extensions
+├──.gitignore/
+├──README.md
+├──config.py
+├──init_chroma.py
+├──pytest.ini
+└──requirements.txt
+
+```
 ### Building a Release
 For privacy and security reasons, you will need to generate your API key and add it as an environment variable.
 Update the version number in the documentation before invoking the build system for clarity.
