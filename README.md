@@ -43,6 +43,8 @@ The Repository consists of a source code folder with directories for the front e
 ### Building and Testing
 Our CI builds on any push or pull request.
 
+If you want to add some documents to be included in our dataset, import them into the ```./src/backend/articles``` folder. Then rerun the command ```python3 init_chroma.py --reset=True```.
+
 Run ```pytest``` to run test files in src/backend/tests.
 
 ### Adding New Tests
