@@ -27,7 +27,7 @@ def main():
     # Check if the ChromaDB path exists (rough indicator of initialization)
     if not os.path.exists(config.CHROMA_PATH) or not os.listdir(config.CHROMA_PATH):
         print("🔧 ChromaDB not found, initializing...")
-        client = ChromaClient(db_dir=config.CHROMA_PATH, collection_name=config.COLLECTION_NAME)
+        client = ChromaClient({'db_dir': config.CHROMA_PATH}, collection_name=config.COLLECTION_NAME, remote=False)
         
         # Process articles and add to collection
         process_folder(client, folder_path=config.DATA_FOLDER)
