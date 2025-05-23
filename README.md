@@ -60,8 +60,6 @@ If you want to contribute to our project, please keep reading! Your work is grea
 
 ### Obtaining Source Code
 Follow the same procedure as detailed in the installation and setup
-=======
-Simply run the ```git clone https://github.com/gycobden/No-Deception/``` command in your terminal and follow the same procedure as detailed in installation and setup
 
 ### Repository Layout
 The Repository consists of a source code folder with directories for the front end and back end. The frontend contains the UI and interfaces with the Chrome extension. The backend contains databases, the LLM configuration, and Flask API configuration. Tests for the backend and frontend are in the respective backend and frontend folders.
