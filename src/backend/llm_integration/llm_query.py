@@ -29,7 +29,13 @@ def queryLLM_to_JSON(user_text):
     embedding = embed_chunk(user_text).tolist()
 
     # Access Chroma DB
-    chroma_client = ChromaClient(config.CHROMA_PATH, config.COLLECTION_NAME)
+    if not config.REMOTE_ACCESS:
+        chroma_client = ChromaClient({'db_dir': config.CHROMA_PATH},
+                                     config.COLLECTION_NAME,
+                                     remote=False)
+    else:
+        chroma_client = ChromaClient({'host': config.REMOTE_ADDRESS, 'port': config.REMOTE_PORT},
+                                     config.COLLECTION_NAME, remote=True)
     similar_text_chunks = chroma_client.find_similar_documents(embedding, 5)
 
     print("stc: ", similar_text_chunks)
