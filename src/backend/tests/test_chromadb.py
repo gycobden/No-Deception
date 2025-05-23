@@ -20,7 +20,7 @@ def test_document():
 def test_client():
     tempdir = tempfile.mkdtemp()
     
-    return ChromaClient(db_dir=tempdir, collection_name="dummy_collection")
+    return ChromaClient({'db_dir': tempdir}, collection_name="dummy_collection", remote=False)
 
 
 def test_metadata_to_dict(test_metadata):

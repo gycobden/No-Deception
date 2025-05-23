@@ -22,8 +22,11 @@ class MetadataDict:
         }
 
 class ChromaClient:
-    def __init__(self, db_dir, collection_name):
-        self.client = chromadb.PersistentClient(path=db_dir)
+    def __init__(self, db_info, collection_name, remote=False):
+        if not remote:
+            self.client = chromadb.PersistentClient(path=db_info['db_dir'])
+        else:
+            self.client = chromadb.HttpClient(host = db_info['host'], port = db_info['port'])
         self.collection = self.client.get_or_create_collection(name=collection_name)
         
     def add_document(self, document: str, metadatas: List["MetadataDict"]):

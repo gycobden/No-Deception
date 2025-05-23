@@ -60,6 +60,23 @@ If you want to contribute to our project, please keep reading! Your work is grea
 
 ### Obtaining Source Code
 Follow the same procedure as detailed in the installation and setup
+=======
+Simply run the ```git clone https://github.com/gycobden/No-Deception/``` command in your terminal and follow the same procedure as detailed in installation and setup
+
+### Repository Layout
+The Repository consists of a source code folder with directories for the front end and back end. The frontend contains the UI and interfaces with the Chrome extension. The backend contains databases, the LLM configuration, and Flask API configuration. Tests for the backend and frontend are in the respective backend and frontend folders.
+
+### Hosting the database
+There are two ways for the LLM backend services to connect to the database, and this behavior can be defined the ```config.py``` file.
+ - Method 1: connect to a database locally. If you have a database stored locally on the machine though running the command ```python3 init_chroma.py --reset=True```, you can instruct the program to connect to this locally installed database by changing ```REMOTE_ACCESS = False``` in ```config.py``` and specify the ```CHROMA_PATH``` to be where the database is installed, which defaults to ```"src/backend/database/chroma_store"```.
+ - Method 2: Remote connection. If you know the address of the host of the remost connection and the port to connect to, you can define that in ```config.py``` by setting the variables ```REMOTE_ADDRESS``` and ```REMOTE_PORT``` and setting ```REMOTE_ACCESS``` to be true. For simple test, if you have a locally stored database, you can host the database to your local server by running ```chroma run /path/to/your/local/database``` and set ```REMOTE_ADDRESS``` to be ```"localhost"``` and port to be ```8000``` to test that remote connection to local server is established.
+
+### Building and Testing
+Our CI builds on any push or pull request.
+
+If you want to add some documents to be included in our dataset, import them into the ```./src/backend/articles``` folder. Then rerun the command ```python3 init_chroma.py --reset=True```.
+
+Run ```pytest``` to run test files in src/backend/tests.
 
 ### Repository Structure
 ```
