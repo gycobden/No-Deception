@@ -16,8 +16,20 @@ def process_code():
     user_text = data['code']
     article_analysis, relevant_articles = queryLLM_to_JSON(user_text)
 
-    # After getting article_analysis from queryLLM_to_JSON
-    highlights = article_analysis["sentences"]
+    # response is structured as:
+    # {
+    #     "sentences": [
+    #         {"sentence": "Sentence 1", "category": "misleading"},
+    #         {"sentence": "Sentence 2", "category": "infactual"}
+    #     ],
+    #     "category": "bad"
+    # }
+
+    # Extract the sentences and their categories
+    sentences = [item["sentence"] for item in article_analysis["sentences"]]
+    categories = [item["category"] for item in article_analysis["sentences"]]
+    highlights = ["sentence: " + sentence + "\ncategory:" + category for sentence, category in zip(sentences, categories)]
+
     category = article_analysis["category"]
 
     print("relevant articles: ", relevant_articles)
