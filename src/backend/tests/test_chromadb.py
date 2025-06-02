@@ -36,22 +36,19 @@ def test_add_and_get_document(test_metadata, test_document, test_client):
     assert document == test_document
 
     result = test_client.get_document_by_id(test_metadata.id)
-    print(result["ids"][0])
     assert result["ids"][0] == test_metadata.id
-    assert result["documents"][0] == test_document
+    assert result["documents"][0] == test_metadata.text_chunk
     assert result["metadatas"][0]["source_title"] == test_metadata.source_title
     assert result["metadatas"][0]["source_author"] == test_metadata.source_author
-    assert result["metadatas"][0]["text_chunk"] == test_metadata.text_chunk
     
 def test_find_similar_documents(test_metadata, test_document, test_client):
     # Ensure the document is in the DB
     document = test_client.add_document(test_document, [test_metadata.to_dict()])
+    assert document == test_document
 
     results = test_client.find_similar_documents(test_metadata.embedding, n_results=1)
-    assert "documents" in results
-    assert len(results["documents"][0]) >= 1
-    assert document == test_document
+    assert results["documents"][0][0] == test_metadata.text_chunk
     assert results["metadatas"][0][0]["source_title"] == test_metadata.source_title
     assert results["metadatas"][0][0]["source_author"] == test_metadata.source_author
-    assert results["metadatas"][0][0]["text_chunk"] == test_metadata.text_chunk
     assert results["ids"][0][0] == test_metadata.id
+
