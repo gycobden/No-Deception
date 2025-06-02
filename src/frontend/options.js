@@ -1,10 +1,9 @@
 // Saves options to chrome.storage
 const saveOptions = () => {
-  const color = document.getElementById('color').value;
-  const likesColor = document.getElementById('like').checked;
+  const darkMode = document.getElementById('dark').checked;
 
   chrome.storage.sync.set(
-    { favoriteColor: color, likesColor: likesColor },
+    { darkMode: darkMode },
     () => {
       // Update status to let user know options were saved.
       const status = document.getElementById('status');
@@ -20,13 +19,20 @@ const saveOptions = () => {
 // stored in chrome.storage.
 const restoreOptions = () => {
   chrome.storage.sync.get(
-    { favoriteColor: 'red', likesColor: true },
+    { darkMode: false },
     (items) => {
-      document.getElementById('color').value = items.favoriteColor;
-      document.getElementById('like').checked = items.likesColor;
+      document.getElementById('dark').checked = items.darkMode;
     }
   );
 };
 
 document.addEventListener('DOMContentLoaded', restoreOptions);
 document.getElementById('save').addEventListener('click', saveOptions);
+
+chrome.storage.sync.get({ darkMode: false }, (items) => {
+  if (items.darkMode) {
+    document.body.classList.add('dark-mode');
+  } else {
+    document.body.classList.remove('dark-mode');
+  }
+});
