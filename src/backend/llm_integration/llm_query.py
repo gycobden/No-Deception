@@ -1,4 +1,4 @@
-import google.generativeai as genai
+# import google.generativeai as genai
 import sys, os
 # Add project root (for config.py)
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../../../")))
@@ -11,12 +11,12 @@ import config
 import pprint
 import json
 
-user_text = "Vaccines train your immune system to create antibodies, just as it does when it's exposed to a disease. However, because vaccines contain only killed or weakened forms of germs like viruses or bacteria, they do not cause the disease or put you at risk of its complications."
+user_text = "vaccines are bad"
 
 # api key to use when local
 
-genai.configure(api_key=os.getenv("GENAI_API_KEY"))
-gemini_client = genai
+# genai.configure(api_key=os.getenv("GENAI_API_KEY"))
+# gemini_client = genai
 
 # Response type Object
 class Analysis(BaseModel):
@@ -27,6 +27,7 @@ class Analysis(BaseModel):
 def queryLLM_to_JSON(user_text):
     # Embed user text
     embedding = embed_chunk(user_text).tolist()
+    print(embedding)
 
     # Access Chroma DB
     if not config.REMOTE_ACCESS:
@@ -44,7 +45,7 @@ def queryLLM_to_JSON(user_text):
 
     print("database text: ", database_text)
 
-    model = genai.GenerativeModel("gemini-2.0-flash")
+    # model = genai.GenerativeModel("gemini-2.0-flash")
 
     prompt = (
     "Here is information from trustworthy documents:\n" + database_text +
@@ -76,23 +77,25 @@ def queryLLM_to_JSON(user_text):
     "}\n"
     )
 
-    response = model.generate_content(
-        [prompt],
-        generation_config={
-            "response_mime_type": "application/json",
-            # Add other config options as needed
-        }
-    )
+    # response = model.generate_content(
+    #     [prompt],
+    #     generation_config={
+    #         "response_mime_type": "application/json",
+    #         # Add other config options as needed
+    #     }
+    # )
 
-    print("Raw LLM response:", response.text)
+    # print("Raw LLM response:", response.text)
 
     relevant_articles = list(set(
         (meta["source_title"], meta["source_author"])
         for meta in similar_text_chunks["metadatas"][0]))
+    
+    print("Relevant articles:", relevant_articles)
 
-    # Parse the JSON response text
-    article_analysis = json.loads(response.text)
+    # # Parse the JSON response text
+    # article_analysis = json.loads(response.text)
 
-    return article_analysis, relevant_articles
+    # return article_analysis, relevant_articles
 
 pprint.pprint(queryLLM_to_JSON(user_text))
