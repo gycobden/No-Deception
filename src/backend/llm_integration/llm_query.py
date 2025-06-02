@@ -38,11 +38,11 @@ def queryLLM_to_JSON(user_text):
                                      config.COLLECTION_NAME, remote=True)
     similar_text_chunks = chroma_client.find_similar_documents(embedding, 5)
 
-    print("stc: ", similar_text_chunks)
+    # print("stc: ", similar_text_chunks)
 
     database_text = "\n".join([meta["text_chunk"] for meta in similar_text_chunks["metadatas"][0]])
 
-    print("database text: ", database_text)
+    # print("database text: ", database_text)
 
     model = genai.GenerativeModel("gemini-2.0-flash")
 
@@ -50,7 +50,7 @@ def queryLLM_to_JSON(user_text):
     "Here is information from trustworthy documents:\n" + database_text +
     "\nHere is some user text:\n" + user_text +
     "\nCompare the user text to the trustworthy information above. " +
-    "For each sentence in the user text that does not align with the trustworthy documents, " +
+    "For each sentence in the user text that conflicts with facts presented in the trustworthy documents, " +
     "include it in the output as an object with two fields: 'sentence' (the sentence string) and 'category' (either 'misleading' or 'infactual'). " +
     "Use 'misleading' if the sentence is partially true or could be interpreted incorrectly, and 'infactual' if the sentence is factually incorrect or contradicts the trustworthy documents. " +
     "After processing all sentences, assign an overall 'category' to the user text, choosing one of: 'couldn't find relevant documents', 'bad', or 'good'.\n" +
