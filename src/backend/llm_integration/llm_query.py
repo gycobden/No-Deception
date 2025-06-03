@@ -11,7 +11,7 @@ import config
 import pprint
 import json
 
-user_text = "tarrifs are a tax on imports, which can lead to higher prices for consumers and reduced competition in the market. They are often used to protect domestic industries from foreign competition, but can also lead to trade wars and retaliation from other countries."
+user_text = "tarrifs are a tax on imports, which can lead to higher prices for consumers and reduced competition in the market. They are often used to protect domestic industries from foreign competition, but can also lead to trade wars and retaliation from other countries"
 
 # api key to use when local
 
