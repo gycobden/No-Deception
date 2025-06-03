@@ -11,7 +11,7 @@ import config
 import pprint
 import json
 
-user_text = "Vaccines train your immune system to create antibodies, just as it does when it's exposed to a disease. However, because vaccines contain only killed or weakened forms of germs like viruses or bacteria, they do not cause the disease or put you at risk of its complications."
+user_text = "vaccines are bad and cause autism"
 
 # api key to use when local
 
@@ -29,18 +29,18 @@ def queryLLM_to_JSON(user_text):
     embedding = embed_chunk(user_text).tolist()
 
     # Access Chroma DB
-    if not config.REMOTE_ACCESS:
-        chroma_client = ChromaClient({'db_dir': config.CHROMA_PATH},
-                                     config.COLLECTION_NAME,
-                                     remote=False)
-    else:
-        chroma_client = ChromaClient({'host': config.REMOTE_ADDRESS, 'port': config.REMOTE_PORT},
-                                     config.COLLECTION_NAME, remote=True)
+    # if not config.REMOTE_ACCESS:
+    chroma_client = ChromaClient({'db_dir': config.CHROMA_PATH},
+                                    config.COLLECTION_NAME,
+                                    remote=False)
+    # else:
+    #     chroma_client = ChromaClient({'host': config.REMOTE_ADDRESS, 'port': config.REMOTE_PORT},
+    #                                  config.COLLECTION_NAME, remote=True)
     similar_text_chunks = chroma_client.find_similar_documents(embedding, 5)
 
     # print("stc: ", similar_text_chunks)
 
-    database_text = "\n".join([meta["text_chunk"] for meta in similar_text_chunks["metadatas"][0]])
+    database_text = "\n".join([doc for doc in similar_text_chunks["documents"][0]])
 
     # print("database text: ", database_text)
 

@@ -31,6 +31,13 @@ def main():
         
         # Process articles and add to collection
         process_folder(client, folder_path=config.DATA_FOLDER)
+        collection = client.client.get_collection(name=config.COLLECTION_NAME)
+        data = collection.get(include=['documents', "embeddings"])
+        print(data["ids"])
+        print(data["embeddings"])
+        print(f"# Docs: {len(data['documents'])}")
+        print(f"# Embeddings: {len(data['embeddings'])}")
+
         print("✅ ChromaDB setup complete.")
     else:
         print("✅ ChromaDB already initialized. Skipping setup.")
