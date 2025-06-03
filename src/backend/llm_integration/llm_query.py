@@ -11,7 +11,7 @@ import config
 import pprint
 import json
 
-user_text = "vaccines are bad and cause autism"
+user_text = "tarrifs are a tax on imports, which can lead to higher prices for consumers and reduced competition in the market. They are often used to protect domestic industries from foreign competition, but can also lead to trade wars and retaliation from other countries."
 
 # api key to use when local
 
@@ -29,13 +29,13 @@ def queryLLM_to_JSON(user_text):
     embedding = embed_chunk(user_text).tolist()
 
     # Access Chroma DB
-    # if not config.REMOTE_ACCESS:
-    chroma_client = ChromaClient({'db_dir': config.CHROMA_PATH},
-                                    config.COLLECTION_NAME,
-                                    remote=False)
-    # else:
-    #     chroma_client = ChromaClient({'host': config.REMOTE_ADDRESS, 'port': config.REMOTE_PORT},
-    #                                  config.COLLECTION_NAME, remote=True)
+    if not config.REMOTE_ACCESS:
+        chroma_client = ChromaClient({'db_dir': config.CHROMA_PATH},
+                                        config.COLLECTION_NAME,
+                                        remote=False)
+    else:
+        chroma_client = ChromaClient({'host': config.REMOTE_ADDRESS, 'port': config.REMOTE_PORT},
+                                     config.COLLECTION_NAME, remote=True)
     similar_text_chunks = chroma_client.find_similar_documents(embedding, 5)
 
     print("stc: ", similar_text_chunks)
@@ -89,6 +89,8 @@ def queryLLM_to_JSON(user_text):
     relevant_articles = list(set(
         (meta["source_title"], meta["source_author"])
         for meta in similar_text_chunks["metadatas"][0]))
+    
+    print(similar_text_chunks["metadatas"])
 
     # Parse the JSON response text
     article_analysis = json.loads(response.text)
