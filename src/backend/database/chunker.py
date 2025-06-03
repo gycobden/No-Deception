@@ -1,6 +1,7 @@
 import pymupdf
 from nltk.tokenize import sent_tokenize
 import nltk
+import re
 nltk.download('punkt_tab')
 
 """
@@ -16,9 +17,28 @@ Returns:
             and the author of that source article.
 """
 
-def chunk_file(file_name, max_token_size=200):
+def chunk_file(file_name, max_token_size=50):
     parsed_text = pymupdf.open(file_name)
+    metadata = parsed_text.metadata
+
+    title = metadata.get("title", "").strip()
+    author = metadata.get("author", "").strip()
+
+    # Fallbacks if title/author is empty or generic
+    if not title or title.lower() in ["untitled", ""]:
+        title = file_name.split("/")[-1]  # Use filename as fallback
+
+    if not author or author.lower() in ["anonymous", ""]:
+        author = "Unknown"
+
+    metadata["title"] = title
+    metadata["author"] = author
+
     raw_text = "\n".join(page.get_text("text") for page in parsed_text)
+
+    # Normalize line breaks before chunking: replace line breaks with space, collapse multiple spaces
+    raw_text = re.sub(r'\s*\n\s*', ' ', raw_text)  # remove inline newlines
+    raw_text = re.sub(r'\s{2,}', ' ', raw_text).strip() 
 
     sentences = sent_tokenize(raw_text)
     chunks, current_chunk, ids, current_len = [], [], [], 0
@@ -40,7 +60,7 @@ def chunk_file(file_name, max_token_size=200):
     if current_chunk:
         chunks.append(" ".join(current_chunk))
         ids.append(id_prefix + f"-{id_counter}")
-    return ids, chunks, parsed_text.metadata
+    return ids, chunks, metadata
 
 
 if __name__ == "__main__":

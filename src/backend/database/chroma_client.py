@@ -22,18 +22,19 @@ class MetadataDict:
         }
 
 class ChromaClient:
-    def __init__(self, db_dir, collection_name):
-        self.client = chromadb.PersistentClient(path=db_dir)
-        self.collection = self.client.get_or_create_collection(name=collection_name)
+    def __init__(self, db_info, collection_name, remote=False):
+        if not remote:
+            self.client = chromadb.PersistentClient(path=db_info['db_dir'])
+        else:
+            self.client = chromadb.HttpClient(host = db_info['host'], port = db_info['port'])
+        self.collection = self.client.get_or_create_collection(collection_name)
         
     def add_document(self, document: str, metadatas: List["MetadataDict"]):
-        documents = [document for _ in range(len(metadatas))]
 
-        for i, metadata in enumerate(metadatas):
+        for metadata in metadatas:
             self.collection.upsert(
-                documents=[documents[i]],
-
-                metadatas=[{"text_chunk": metadata["text_chunk"], "source_title": metadata["source_title"], 
+                documents=[metadata["text_chunk"]],
+                metadatas=[{"source_title": metadata["source_title"], 
                             "source_author": metadata["source_author"]}],
                 ids=[metadata["id"]],
                 embeddings=[metadata["embedding"]]
