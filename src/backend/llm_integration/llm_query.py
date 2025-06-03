@@ -53,7 +53,8 @@ def queryLLM_to_JSON(user_text):
     "For each sentence in the user text that conflicts with facts presented in the trustworthy documents, " +
     "include it in the output as an object with two fields: 'sentence' (the sentence string) and 'category' (either 'misleading' or 'infactual'). " +
     "Use 'misleading' if the sentence is partially true or could be interpreted incorrectly, and 'infactual' if the sentence is factually incorrect or contradicts the trustworthy documents. " +
-    "After processing all sentences, assign an overall 'category' to the user text, choosing one of: 'couldn't find relevant documents', 'bad', or 'good'.\n" +
+    "After processing all sentences, assign an overall 'category' to the user text, choosing one of: 'couldn't find relevant documents', 'accurate', or 'innacurate'.\n" +
+    "If category is accurate or innacurate, add a short explanation using the trustworthy document's evidence to support the category"
     "Criteria:\n"
     " - good: text aligns with claims in the document\n"
     " - bad: text contradicts facts in the document\n"
@@ -67,7 +68,7 @@ def queryLLM_to_JSON(user_text):
     '    {"sentence": "Sentence 1 that is misleading.", "category": "misleading"},\n'
     '    {"sentence": "Sentence 2 that is factually incorrect.", "category": "infactual"}\n'
     "  ],\n"
-    '  "category": "bad"\n'
+    '  "category": "Innacurate: According to [article X] and [evidence X] the given information is infactual but this is the factual explanation: [evidence X]"\n'
     "}\n"
     "Example 2:\n"
     "{\n"
