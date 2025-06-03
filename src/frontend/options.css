@@ -2,3 +2,12 @@ body {
     width: 300px;
     height: 400px;
 }
+footer {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.dark-mode {
+  background-color: #222;
+  color: #eee;
+}
