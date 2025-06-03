@@ -6,25 +6,24 @@
   <meta charset="UTF-8">
 </head>
 <body>
-  <h1>No Deception</h1>
+  <header>
+    <h1>No Deception</h1>
+  </header>
+  <main>
     <p>Welcome to the No Deception page!</p>
     <p>This extension analyzes text that you highlight to check for accuracy!</p>
     <p>If you are seeing this text, then try highlighting some text in the article and re-open this popup.</p>
-  <h3 id="hhh">Selected Code</h3>
-  <pre id="highlights">Loading...</pre>
-  <pre id="truthy">Loading...</pre>
-  <pre id="article">Loading...</pre>
-  <script src="popup.js"></script>
+    <h3 id="hhh">Text Analysis</h3>
+    <p> Claims contained in highlighted text </p>
+    <pre id="highlights">Loading...</pre>
+    <p> Quality of information in each sentence </p>
+    <pre id="truthy">Loading...</pre>
+    <p> Articles used for information references </p>
+    <pre id="article">Loading...</pre>
+  </main>
   <footer>
-    <a id="optext"href="options.html">Extension Options</a>
+    <p>@No-Deception - <a href="options.html">Extension Options</a></p>
   </footer>
+  <script src="popup.js"></script>
 </body>
 </html>
-
-<!--
-<div id="bubble-host">
-  #shadow-root (open)
-  <style></style>
-  <div id="bubble-main"></div>
-</div>
--->
