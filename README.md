@@ -9,10 +9,11 @@ No Deception is a Chrome extension that allows you to analyze website text. When
 
 ### Installation and Set Up (Linux)
 1) ```git clone https://github.com/gycobden/No-Deception/``` into your local machine, cd into the directory, then ```pip install -r requirements.txt```. It's recommended that a virtual environment be set up to download these dependencies.
-2) Run ```python3 init_chroma.py --reset=True``` to set up the vector database
+2) Run ```python3 init_chroma.py --reset=True``` (On Windows: ```python init_chroma.py --reset=True```) to set up the vector database
 3) Create a Gemini API key: follow instructions at https://aistudio.google.com/app/apikey.
-4) Add your Gemini API key as an environment variable with the command ```export GENAI_API_KEY="your_value_here"``` (on Windows: ```$env:GENAI_API_KEY="your_value_here"```), then run ```python3 src/backend/endpoint.py``` in the No-Deception directory.
+4) Add your Gemini API key as an environment variable with the command ```export GENAI_API_KEY="your_value_here"``` (on Windows: ```$env:GENAI_API_KEY="your_value_here"```), then run ```python3 src/backend/endpoint.py``` (On Windows: ```python src/backend/endpoint.py```) in the No-Deception directory.
 
+## User Manual
 #### Adding Extension to Chrome
 Open the three-dot menu, hover over extensions, and hit "manage extensions."
 
@@ -45,10 +46,9 @@ Go to a website and highlight a piece of text that you want fact-checked. Click 
 
 ### Bug Reporting
 **IMPORTANT:** Please check the "Known Bugs" section below to make sure the bug you are encountering is not already being fixed by the developers before submitting.
-Email ```evanmao@uw.edu``` to report any bugs encountered in installation or using the extension. Please use the following format in your email:
+Click on the Issues tab, then create a new issue. Keep the title concise, and include the following in the description:
 - Specify the exact steps needed to reproduce your bug
-- Note down the version of the extension you are using
-- Mention what operating system the bug is occurring on (Mac, Windows, Linux, etc.)
+- Mention the operating system where the bug occurs (Mac, Windows, Linux, etc.)
 - Elaborate on the expected output and the actual output of the bug
 - Any additional information relevant to the bug
 

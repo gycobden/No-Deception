@@ -1,9 +1,8 @@
 //  chrome.storage.local - for storing data on local machines.
 //  service workers have no access to window.localStorage
-
+/*
 const tldLocales = {
-    'com.m': 'More Context',
-    'com.l': 'Less Context'
+    'com.m': 'No Deception',
   }
 
 chrome.runtime.onInstalled.addListener(async () => {
@@ -16,9 +15,4 @@ chrome.runtime.onInstalled.addListener(async () => {
     });
   }
 });
-
-chrome.action.onClicked.addListener((tab) => {
-  chrome.action.setTitle({
-    tabId: tab.id,
-    title: `You are on tab: ${tab.id}`});
-});
+*/

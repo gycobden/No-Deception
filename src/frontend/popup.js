@@ -72,3 +72,11 @@ chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
       }
     );
   });
+
+  chrome.storage.sync.get({ darkMode: false }, (items) => {
+  if (items.darkMode) {
+    document.body.classList.add('dark-mode');
+  } else {
+    document.body.classList.remove('dark-mode');
+  }
+});
