@@ -38,7 +38,7 @@ def queryLLM_to_JSON(user_text):
     #                                  config.COLLECTION_NAME, remote=True)
     similar_text_chunks = chroma_client.find_similar_documents(embedding, 5)
 
-    # print("stc: ", similar_text_chunks)
+    print("stc: ", similar_text_chunks)
 
     database_text = "\n".join([doc for doc in similar_text_chunks["documents"][0]])
 
