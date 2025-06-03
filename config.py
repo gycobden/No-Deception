@@ -4,7 +4,7 @@ import os
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 # Define absolute path to ChromaDB store
-CHROMA_PATH = os.path.abspath(os.path.join(PROJECT_ROOT, "backend/database/chroma_store"))
+CHROMA_PATH = os.path.abspath(os.path.join(PROJECT_ROOT, "src/backend/database/chroma_store"))
 
 COLLECTION_NAME = "vaccines"
 DATA_FOLDER = os.path.abspath(os.path.join(PROJECT_ROOT, "src/backend/articles"))
