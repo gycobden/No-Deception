@@ -68,7 +68,7 @@ def queryLLM_to_JSON(user_text):
     '    {"sentence": "Sentence 1 that is misleading.", "category": "misleading"},\n'
     '    {"sentence": "Sentence 2 that is factually incorrect.", "category": "infactual"}\n'
     "  ],\n"
-    '  "category": "Innacurate: According to [article X] and [evidence X] the given information is infactual but this is the factual explanation: [evidence X]"\n'
+    '  "category": "Inaccurate: According to [article X] and [evidence X] the given information is infactual but this is the factual explanation: [evidence X]"\n'
     "}\n"
     "Example 2:\n"
     "{\n"
