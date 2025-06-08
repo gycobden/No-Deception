@@ -39,6 +39,20 @@ Go to a website and highlight a piece of text that you want fact-checked. Click 
 
 ![Image](https://github.com/user-attachments/assets/1c50082f-9c6a-433c-a5a9-7e98dff8d601)<br><br>
 
+If no sentence contains misleading information, No Deception will not provide highlights. It will also not provide highlights if the highlighted text is outside the scope of its training documents.
+Currently, No Deception will only work on topics related to vaccines and tariffs.
+
+Here is a list of articles to test the tool with:
+
+https://www.cdc.gov/vaccines-adults/reasons/index.html
+
+https://www.oxfordeconomics.com/resource/tariffs-101-what-are-they-and-how-do-they-work/
+
+https://news.northeastern.edu/2024/11/08/rfk-jr-vaccine-choice/
+
+
+#### **IMPORTANT:** On certain websites, such as the Chrome extensions page and the New York Times, No Deception will not work due to permission issues.
+
 ### WIP Features
 - Simplifying installation for typical users through the main Google Extensions page
 - Implementing a "Report Bugs" button on the extension's UI
